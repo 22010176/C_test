@@ -18,8 +18,7 @@ Xe* TaoXe(char* hang, char* mau, int seat, double gia) {
 }
 Xe* CopyXe(Xe _a) { return TaoXe(_a.branch, _a.color, _a.seat, _a.price); }
 Xe* NhapXe() {
-  char* hang = malloc(11);
-  char* _mau = malloc(6);
+  char hang[10], _mau[6];
   int seat, mau; double gia;
   do {
     printf("Nhap hang xe: ");
@@ -67,7 +66,7 @@ Xe* NhapXe() {
   return TaoXe(hang, _mau, seat, gia);
 }
 void InXe(Xe* _a) {
-  printf("%s %s %d %lf", _a->branch, _a->color, _a->seat, _a->price);
+  printf("\nHang: %s\nMau: %s\nCho Ngoi: %d\nGia: %lf\n", _a->branch, _a->color, _a->seat, _a->price);
 }
 int main() {
   char* a = malloc(10);
