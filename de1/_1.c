@@ -3,18 +3,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 char* NhapStr(int len) {
+  printf("Nhap string: ");
   char* a = malloc(len * sizeof(char));
   gets(a); fflush(stdin);
   return a;
 }
 int CheckStr(char* _a) {
   if (strlen(_a) < 6) return 0;
-  int hoa = 0, so = 0, i;
-  for (i = 0; i < strlen(_a);i++) {
+  if (tolower(_a[0]) != 'p') return 0;
+
+  int hoa, so, i;
+  for (i = hoa = so = 0; i < strlen(_a);i++) {
     if (isupper(_a[i])) hoa = 1;
     if (isdigit(_a[i])) so = 1;
-    if (hoa && so) return 1;
   }
+  if (hoa && so) return 1;
   return 0;
 }
 int CountAlpha(char* _a) {
@@ -29,9 +32,8 @@ int CountDitgit(char* _A) {
 }
 
 char* _1() {
-  char* a;
   do {
-    a = NhapStr(6);
+    char* a = NhapStr(100000);
     if (CheckStr(a)) return a;
     free(a);
   } while (1);
