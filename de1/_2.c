@@ -3,10 +3,12 @@
 #include <string.h>
 #include <ctype.h>
 #include <conio.h>
+
 typedef struct {
   int seat; double price;
   char branch[10], color[5];
 } Xe;
+
 int checkInt(int x) { return x > 0; }
 int checkDouble(double x) { return x > 0; }
 Xe* TaoXe(char* hang, char* mau, int seat, double gia) {
@@ -67,6 +69,21 @@ Xe* NhapXe() {
 }
 void InXe(Xe* _a) {
   printf("\nHang: %s\nMau: %s\nCho Ngoi: %d\nGia: %lf\n", _a->branch, _a->color, _a->seat, _a->price);
+}
+void printLine(int time) {
+  printf("+");
+  int i;for (i = 0; i < time;i++) printf("-");
+}
+void printRow() {
+
+}
+void PrintTable(char** _cols, int cols, void** Item, int num, void (*f)(void**, int)) {
+  int* size = malloc(4 * cols), i;
+  for (i = 0; i < cols;i++) {
+    size[i] = strlen(_cols[i]) + 2;
+    printLine(size[i]);
+  }
+
 }
 int main() {
   char* a = malloc(10);
