@@ -5,7 +5,7 @@
 #include <ctype.h>
 #include <conio.h>
 #include <math.h>
-
+//     &a a
 #define ff fflush(stdin)
 #define P printf
 #define len strlen
@@ -23,9 +23,9 @@ void PD(Data* d, int i, int* a) {
 char* PR(int* d, int l) {
   int j = 0, n = 20;
   char* x = malloc(n * sizeof(char));
-  for (int _i = 0; _i < l;_i++) {
+  int _i, _j;for (_i = 0; _i < l;_i++) {
     x[j++] = '+';
-    for (int _j = 0; _j < abs(d[_i]) + 2;_j++) {
+    for (_j = 0; _j < abs(d[_i]) + 2;_j++) {
       if (j == n) {
         n *= 2;
         x = realloc(x, n * sizeof(char));
@@ -37,13 +37,13 @@ char* PR(int* d, int l) {
   return realloc(x, j * sizeof(char));
 }
 void PND(Data** d, int n) {
-  int* cols = malloc(5 * sizeof(int));
+  int* cols = malloc(5 * sizeof(int)), i;
   cols[0] = 3; cols[1] = -20;
   cols[2] = 10; cols[3] = -10; cols[4] = -15;
   char* a = PR(cols, 5);
   printf("\n%s", a);
   printf("\n| %*s | %*s | %*s | %*s | %*s |", cols[0], "STT", cols[1], "Ten san pham", cols[2], "So luong", cols[3], "Size", cols[4], "Gia ban (k VND)");
-  for (int i = 0; i < n && d[i] != (Data*)-1;i++) {
+  for (i = 0; i < n && d[i] != (Data*)-1;i++) {
     P("\n%s", a);
     PD(d[i], i + 1, cols);
   }
@@ -87,7 +87,7 @@ Data* NhDa() {
 }
 Data** NhNDa(int n) {
   Data** x = CRAD(n);
-  for (int i = 0; i < n;i++) {
+  int i; for (i = 0; i < n;i++) {
     printf("\nNhap san pham %d: \n", i + 1);
     x[i] = NhDa();
   }
@@ -114,27 +114,33 @@ void Sorting(void** _a, int _l, int (*_f)(void*, void*)) {
 int C_1(void* a, void* b) { return ((Data*)a)->n < ((Data*)b)->n; }
 float C_2(Data** A, int l) { // Tinh Tong luong tien  
   float x = 0;
-  for (int i = 0; i < l;x += A[i]->p, i++);
+  int i; for (i = 0; i < l; i++) x += (A[i]->p);
   return x;
 }
-// D
+//  &D = a -> D = (*a)
+
 int D_1(Data* a, float x, float y, char* s) {
   float p = a->p;
   return x <= p && p <= y && !strcmp(a->s, s);
 }
 Data** Filter(Data** A, int l, int x, int y, char* s) {
-  Data** _d = CRAD(l); int j = 0;
-  for (int i = 0; i < l;i++) if (D_1(A[i], x, y, s)) _d[j++] = A[i];
+  Data** _d = CRAD(l); int j = 0, i;
+  for (i = 0; i < l;i++) if (D_1(A[i], x, y, s)) _d[j++] = A[i];
   _d[j++] = (Data*)-1;
   return realloc(_d, j * sizeof(Data*));
 }
 int main() {
-  srand(time(NULL));
-  int n = 20;
-  Data** A = CRAD(n);
-  for (int i = 0; i < n;i++) A[i] = RDa(i);
-  Sorting((void**)A, n, C_1);
-  Data** B = Filter(A, n, 0, 10000, "M");
-  PND(A, n);
-  free(A); free(B);
+
+  for (int i = 0; i < 200;i++) {
+    printf("%d %c\n", i, i);
+
+  }
+  // srand(time(NULL));
+  // int n = 20, i;
+  // Data** A = CRAD(n);
+  // for (i = 0; i < n;i++) A[i] = RDa(i);
+  // Sorting((void**)A, n, C_1);
+  // Data** B = Filter(A, n, 0, 10000, "M");
+  // PND(A, n);
+  // free(A); free(B);
 };
