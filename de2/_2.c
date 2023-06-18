@@ -33,8 +33,7 @@ char* PR(int* d, int l) {
       x[j++] = '-';
     }
   }
-  x[j++] = '+';
-  x[j++] = '\0';
+  x[j++] = '+'; x[j++] = '\0';
   return realloc(x, j * sizeof(char));
 }
 void PND(Data** d, int n) {
@@ -46,7 +45,7 @@ void PND(Data** d, int n) {
   printf("\n| %*s | %*s | %*s | %*s | %*s |", cols[0], "STT", cols[1], "Ten san pham", cols[2], "So luong", cols[3], "Size", cols[4], "Gia ban (k VND)");
   for (int i = 0; i < n && d[i] != (Data*)-1;i++) {
     P("\n%s", a);
-    PD(d[i], i, cols);
+    PD(d[i], i + 1, cols);
   }
   P("\n%s", a);
   free(cols);
@@ -100,7 +99,7 @@ Data* RDa(int i) {
   char _a[100];
   strcpy(a->t, itoa(i, _a, 16));
   strcpy(a->s, GetS(rand() % 5 + 1));
-  a->n = rand() % 10000; a->p = rand() % 1000000;
+  a->n = rand() % 10000; a->p = (float)(rand() % 1000000) / 100;
   return a;
 }
 // C
