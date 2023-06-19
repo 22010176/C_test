@@ -6,7 +6,7 @@
 #include <math.h>
 
 #define FF fflush(stdin)
-#define P print
+#define P printf
 char* _A() {
   printf("Nhap xau a: ");
   char* a = malloc(100);
