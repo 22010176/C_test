@@ -15,7 +15,7 @@ char* _A() {
     free(a);
     return _A();
   }
-  for (int i = 0, _a = 0, b = 0;i < strlen(a);i++) {
+  int i, _a, b;for (i = 0, _a = 0, b = 0;i < strlen(a);i++) {
     if (isdigit(a[i])) _a = 1;
     if (isupper(a[i])) b = 1;
     if (_a && b) return a;
@@ -24,9 +24,9 @@ char* _A() {
   return _A();
 }
 void _B(char* a) {
-  int cha, nu;
+  int cha, nu, i;
   cha = nu = 0;
-  for (int i = 0;i < strlen(a);i++) {
+  for (i = 0;i < strlen(a);i++) {
     if (isalpha(a[i])) cha++;
     if (isdigit(a[i])) nu++;
   }
@@ -34,8 +34,8 @@ void _B(char* a) {
 }
 char* _C(char* a) {
   char* c = malloc((strlen(a) + 1) * sizeof(char));
-  int j = 0;
-  for (int i = 0; i < strlen(a);i++) {
+  int j = 0, i;
+  for (i = 0; i < strlen(a);i++) {
     char x = a[i];
     if (!isalnum(x)) continue;
     c[j++] = x;
