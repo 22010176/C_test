@@ -130,17 +130,12 @@ Data** Filter(Data** A, int l, int x, int y, char* s) {
   return realloc(_d, j * sizeof(Data*));
 }
 int main() {
-
-  for (int i = 0; i < 200;i++) {
-    printf("%d %c\n", i, i);
-
-  }
-  // srand(time(NULL));
-  // int n = 20, i;
-  // Data** A = CRAD(n);
-  // for (i = 0; i < n;i++) A[i] = RDa(i);
-  // Sorting((void**)A, n, C_1);
-  // Data** B = Filter(A, n, 0, 10000, "M");
-  // PND(A, n);
-  // free(A); free(B);
+  srand(time(NULL));
+  int n = 20, i;
+  Data** A = CRAD(n);
+  for (i = 0; i < n;i++) A[i] = RDa(i);
+  Sorting((void**)A, n, C_1);
+  Data** B = Filter(A, n, 0, 10000, "M");
+  PND(A, n);
+  free(A); free(B);
 };
