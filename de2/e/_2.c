@@ -5,7 +5,7 @@
 #include <ctype.h>
 #include <conio.h>
 #include <math.h>
-//     &a a
+
 #define ff fflush(stdin)
 #define P printf
 #define len strlen

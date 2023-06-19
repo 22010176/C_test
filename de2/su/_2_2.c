@@ -88,7 +88,7 @@ void Sorting(void** _a, int _l, int (*_f)(void*, void*)) {
   int i, j;for (i = 0; i < _l;i++) for (j = 0; j < _l - i - 1;j++)
     if (_f(_a[j], _a[j + 1])) Swap(_a + j, _a + j + 1);
 }
-int S(void* _a, void* _b) {
+int _S(void* _a, void* _b) {
   Data* a = (Data*)_a, * b = (Data*)_b;
   return a->num > b->num;
 }
@@ -96,7 +96,7 @@ int S2(void* _a) {
   Data* a = (Data*)_a;
   return a->gia > 33;
 }
-void _C1(Data** A, int _l) { Sorting(A, _l, S); }
+void _C1(Data** A, int _l) { Sorting(A, _l, _S); }
 float _C2(Data** A, int _l) {
   float a = 0;
   for (int i = 0; i < _l;i++) a += A[i]->gia * A[i]->num;
@@ -115,7 +115,7 @@ void Test() {
   A[5] = NhapSanPham("Sanpa3", 5, 13, 233.35);
   InSP(A, _n);
   InSP((Data**)LocSP((void**)A, _n, S2), _n);
-  Sorting((void**)A, _n, S);
+  Sorting((void**)A, _n, _S);
   InSP(A, _n);
 }
 int main() {
