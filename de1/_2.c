@@ -64,7 +64,7 @@ char* GeLi(int* x, int l) {
     int a = abs(x[i]) + 2;
     _x[j++] = '+';
     for (k = 0; k < a;k++) _x[j++] = '-';
-    if (strlen(_x) + x[i + 1] < _l || i > l) continue;
+    if (strlen(_x) + x[i + 1] < _l || i >= l) continue;
     _l *= 2;
     _x = realloc(_x, _l);
   }
