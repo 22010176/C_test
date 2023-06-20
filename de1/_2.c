@@ -37,6 +37,22 @@ Data* CrDa(char* h, int m, int n, float g) {
   strcpy(dat->h, h);
   return dat;
 }
+Data* GeDa() {
+  char h[10]; int m, n; float g;
+  do {
+    itoa(rand() % 10000, h, 16);
+    m = rand() % 5 + 1, n = rand() % 100;
+    g = (float)(rand() % 1000000) / 100;
+  } while (ChDa(h, m, n, g));
+  return CrDa(h, m, n, g);
+}
+Data** GeNDa(int n) {
+  Data** dat = _m(_s(Data*) * (n + 1));
+  int i;for (i = 0; i < n;i++) dat[i] = GeDa();
+  dat[n] = (Data*)-1;
+  return dat;
+}
+
 Data* InDa() {
   char h[10]; int m, n, i = 0; float g;
   do {
@@ -89,7 +105,7 @@ void Swap(Data** a, Data** b) {
   Data* t = *a;*a = *b, * b = t;
 }
 void Sorting(Data** a, int l) {
-  int i, j;for (i = 0; i < l;i++) for (j = 0; j < l - i - 1;j++) if (a[j]->g < a[j + 1]->g) Swap(a + j, a + j + 1);
+  int i, j;for (i = 0; i < l;i++) for (j = 0; j < l - i - 1;j++) if (a[j]->g > a[j + 1]->g) Swap(a + j, a + j + 1);
 }
 Data** Filter(Data** a, int l, int n, int g1, int g2) {
   Data** x = _m(_s(Data*) * (l + 1));
@@ -118,5 +134,10 @@ void _5() {
   _p("Danh sach oto thoa man: \n");
   PrNDa(aa, b, n);
   free(x); free(aa);
+  getc(stdin);
 }
-int main() { _5(); }
+int main() {
+  Data** x = GeNDa(10000);
+  int _x[] = { 5,-15,-15,15,-25 };
+  PrNDa(Filter(x, 10000, 80, 90, 100), _x, 10000);
+}
