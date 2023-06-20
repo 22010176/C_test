@@ -1,63 +1,51 @@
 #include <string.h>
 #include <ctype.h>
-#include <stdio.h>
 #include <stdlib.h>
-char* NhapStr(int len) {
-  printf("Nhap string: ");
-  char* a = malloc(len * sizeof(char));
-  gets(a); fflush(stdin);
+#include <stdio.h>
+
+#define gs fflush(stdin);gets
+#define _p printf
+#define _m malloc 
+int check(char* s) {
+  if (strlen(s) > 6 || toupper(s[0]) != 'P') return 1;
+  int i, a, b;
+  for (i = a = b = 0; i < strlen(s);i++) {
+    char x = s[i];
+    if (isupper(x)) a = 1;
+    if (isdigit(x)) b = 1;
+    if (a && b) return 0;
+  }
+  return 1;
+}
+char* _1() {
+  char* a = _m(7);
+  int i = 0;
+  _p("Nhap 1 xau co 6 ki tu, it nhat mot chu hoa, mot chu so.\nBat dau bang 'P' hoac 'p'.");
+  _p("Nhap xau: ");
+  do {
+    if (i++) printf("Ko hop le! Nhap lai: ");
+    gs(a);
+  } while (check(a));
   return a;
 }
-int CheckStr(char* _a) {
-  if (strlen(_a) < 6) return 0;
-  if (tolower(_a[0]) != 'p') return 0;
-
-  int hoa, so, i;
-  for (i = hoa = so = 0; i < strlen(_a);i++) {
-    if (isupper(_a[i])) hoa = 1;
-    if (isdigit(_a[i])) so = 1;
+void _2(char* s) {
+  int i, a, b;
+  for (i = a = b = 0; i < strlen(s);i++) {
+    if (isdigit(s[i])) a++;
+    if (isalpha(s[i])) b++;
   }
-  if (hoa && so) return 1;
-  return 0;
-}
-int CountAlpha(char* _a) {
-  int i, c;
-  for (i = 0, c = 0;i < strlen(_a);i++) c += !!isalpha(_a[i]);
-  return c;
-}
-int CountDitgit(char* _A) {
-  int i, c;
-  for (i = 0, c = 0;i < strlen(_A);i++) c += isdigit(_A[i]);
-  return c;
+  printf("Co %d so va %d chu.\n", a, b);
 }
 
-char* _1() {
-  do {
-    char* a = NhapStr(100000);
-    if (CheckStr(a)) return a;
-    free(a);
-  } while (1);
-}
-void _2(char* b) {
-  printf("Chu cai: %d\n", CountAlpha(b));
-  printf("Chu so: %d\n", CountDitgit(b));
-}
-char* _3(char* A) {
-  char* b = malloc(strlen(A) * sizeof(char));
-  int i, c;
-  for (i = 0, c = 0; i < strlen(A);i++) {
-    char x = A[i];
-    if (!isalpha(x) && !isdigit(x)) {
-      c++;
-      continue;
-    }
-    b[i - c] = A[i];
+void _3(char* s) {
+  int i, j;for (i = j = 0; i < strlen(s);i++) {
+    if (!isalnum(s[i])) continue;
+    s[j++] = s[i];
   }
-  b[i - c] = '\0';
-  return b;
+  s[j] = '\0';
 }
 int main() {
   char* a = _1();
-  _2(a);
-  printf(_3(a));
+  _2(a); _3(a);
+  _p(a);
 }
