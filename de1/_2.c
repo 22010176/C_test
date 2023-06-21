@@ -137,7 +137,22 @@ void _5() {
   getc(stdin);
 }
 int main() {
-  Data** x = GeNDa(10000);
-  int _x[] = { 5,-15,-15,15,-25 };
-  PrNDa(Filter(x, 10000, 80, 90, 100), _x, 10000);
+  srand(time(NULL));
+
+  // Data** x = GeNDa(100);
+  // int _x[] = { 5,-15,-15,15,-25 };
+  // Sorting(x, 100);
+  // PrNDa(x, _x, 10000);
+  int x = 10, y = 5, i, j = 0;
+  char _x[1000];
+  _x[j++] = '+';
+  for (i = 0; i < x;i++) {
+    _x[j++] = '-';
+  }
+  _x[j++] = '+';
+  for (i = 0; i < y;i++) {
+    _x[j++] = '-';
+  }
+  _x[j++] = '+';
+  _p(_x);
 }
