@@ -139,20 +139,9 @@ void _5() {
 int main() {
   srand(time(NULL));
 
-  // Data** x = GeNDa(100);
-  // int _x[] = { 5,-15,-15,15,-25 };
-  // Sorting(x, 100);
-  // PrNDa(x, _x, 10000);
-  int x = 10, y = 5, i, j = 0;
-  char _x[1000];
-  _x[j++] = '+';
-  for (i = 0; i < x;i++) {
-    _x[j++] = '-';
-  }
-  _x[j++] = '+';
-  for (i = 0; i < y;i++) {
-    _x[j++] = '-';
-  }
-  _x[j++] = '+';
-  _p(_x);
+  Data** x = GeNDa(100);
+  int _x[] = { 5,-15,-15,15,-25 };
+  Sorting(x, 100);
+  PrNDa(x, _x, 10000);
+
 }

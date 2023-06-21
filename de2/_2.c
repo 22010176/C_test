@@ -117,8 +117,6 @@ float C_2(Data** A, int l) { // Tinh Tong luong tien
   int i; for (i = 0; i < l; i++) x += (A[i]->p);
   return x;
 }
-//  &D = a -> D = (*a)
-
 int D_1(Data* a, float x, float y, char* s) {
   float p = a->p;
   return x <= p && p <= y && !strcmp(a->s, s);

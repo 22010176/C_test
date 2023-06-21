@@ -1,22 +1,50 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include <conio.h>
 #include <math.h>
-#include <ctype.h>
 
-typedef struct {
-  char t[100], s[100];
-  int s; float x;
-} Data;
-int CheckData(char* t, char* s, int n, float s2) {
-  int _t = strlen(t), _s = strlen(s);
-  return !_t || t > 10 || !_s || _s > 5 || n < 0 || s2 < 0;
+#define FF fflush(stdin)
+#define P printf
+char* _A() {
+  printf("Nhap xau a: ");
+  char* a = malloc(100);
+  FF; gets(a);
+  if (tolower(a[0]) != 'p' || strlen(a) < 6) {
+    free(a);
+    return _A();
+  }
+  int i, _a, b;for (i = 0, _a = 0, b = 0;i < strlen(a);i++) {
+    if (isdigit(a[i])) _a = 1;
+    if (isupper(a[i])) b = 1;
+    if (_a && b) return a;
+  }
+  free(a);
+  return _A();
 }
-Data* CrDa(char* t, char* s, int n, float s2) {
-  Data* dat = malloc(sizeof(Data));
-
+void _B(char* a) {
+  int cha, nu, i;
+  cha = nu = 0;
+  for (i = 0;i < strlen(a);i++) {
+    if (isalpha(a[i])) cha++;
+    if (isdigit(a[i])) nu++;
+  }
+  printf("%d %d\n", cha, nu);
+}
+char* _C(char* a) {
+  char* c = malloc((strlen(a) + 1) * sizeof(char));
+  int j = 0, i;
+  for (i = 0; i < strlen(a);i++) {
+    char x = a[i];
+    if (!isalnum(x)) continue;
+    c[j++] = x;
+  }
+  c[j++] = '\0';
+  return realloc(c, j);
 }
 int main() {
-
+  char* s = _A();
+  _B(s);
+  P(_C(s));
 }
