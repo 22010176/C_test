@@ -23,7 +23,9 @@ void _2(char* _a) {
 
 int main() {
   char x[100];
+  int i = 0;
   do {
+    if (i++) printf("Xau ko hop le. ");
     printf("Nhap xau: ");
     ff; gets(x);
   } while (!_1(x));
