@@ -84,6 +84,7 @@ char* GeLi(int* sp, int _l) {
   a[j++] = '+'; a[j++] = '\0';
   return memcpy(_M(j), a, j);
 }
+
 void PrDa(Data* x, int* n, int i) {
   if (x == (Data*)-2) return;
   _P("| %*d | %*s | %*d | %*d | %*s |", n[0], i, n[1], x->m, n[2], x->nv, n[3], x->ds, n[4], x->dc);

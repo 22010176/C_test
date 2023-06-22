@@ -99,7 +99,7 @@ void Sorting(Data** x, int l) {
     if (strcmp(x[j]->id, x[j + 1]->id) > 0) Swap(x + j, x + j + 1);
 }
 void _5() {
-  int n; sc("%d", &n);
+  pr("Nhap n: "); int n; sc("%d", &n);
   Data** x = NhNDa(n);
   char** a = _m(5 * _s(char*));
   a[0] = "STT", a[1] = "MaCH", a[2] = "Ten chu ho", a[3] = "So thanh vien", a[4] = "So dien";
