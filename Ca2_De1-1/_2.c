@@ -17,7 +17,6 @@
 typedef struct { char id[5], n[31];  int tv, di; } Data;
 int ChId(char* id) {
   int i; if (_l(id) != 4) return 1;
-
   for (i = 0; i < _l(id);i++) if (!isdigit(id[i])) return 1;
   return 0;
 }
@@ -45,7 +44,7 @@ Data** GeNDa(int n) {
   return x;
 }
 Data* NhDa() {
-  char id[4], n[30], tv[10], di[10];
+  char id[5], n[31], tv[11], di[11];
   int _id = 0, _ch = 0;
 
   pr("Nhap ma CH(4 chu so): ");
@@ -63,8 +62,8 @@ Data* NhDa() {
 }
 Data** NhNDa(int n) {
   Data** dat = _m(_s(Data*) * (n + 1));
-  int i; for (i = 0; i <= n;i++) {
-    if (i < n)pr("\n\nNhap can ho thu %d:\n", i + 1);
+  int i; for (i = 0; i < n;i++) {
+    pr("\n\nNhap can ho thu %d:\n", i + 1);
     dat[i] = NhDa();
   }
   dat[n] = (Data*)-1;
@@ -80,16 +79,16 @@ char* GeLi(char* s, int* x, int l) {
   }
   s[j++] = '+'; s[j++] = '\0';
 }
-void PrDa(Data* x, int* s, int i) { pr("| %*d | %*s | %*s | %*d | %*d |", s[0], i, s[1], x->id, s[2], x->n, s[3], x->tv, s[4], x->di); };
-void PrNDa(Data** x, char s[][100], int l) {
+void PrNDa(Data** x, char s[][30], int l) {
   int i, j, sp[] = { 5,10,15,15,10 };
-  char li[1000]; GeLi(li, sp, 5);
+  char li[100]; GeLi(li, sp, 5);
   pr("\n%s\n", li);
-  for (i = 0; i < l;i++) pr("| %*s ", sp[i], s[i]);
+  for (i = 0; i < 5;i++) pr("| %*s ", sp[i], s[i]);
   pr("|\n%s\n", li);
 
-  for (i = 0; x[i] != (Data*)-1;i++) {
-    PrDa(x[i], sp, i + 1);
+  for (i = 0; i < l;i++) {
+    if (x[i] == (Data*)-2) continue;
+    pr("| %*d | %*s | %*s | %*d | %*d |", sp[0], i + 1, sp[1], x[i]->id, sp[2], x[i]->n, sp[3], x[i]->tv, sp[4], x[i]->di);
     pr("\n%s\n", li);
   }
 }
@@ -102,11 +101,16 @@ void Sorting(Data** x, int l) {
 void _5() {
   pr("Nhap n: "); int n; sc("%d", &n);
   Data** x = NhNDa(n);
-  char a[][100] = { "STT","MaCH","Ten chu ho","So thanh vien","So dien" };
+  char a[][30] = { "STT","MaCH","Ten chu ho","So thanh vien","So dien" };
   pr("Danh sach can ho vua nhap: \n");
-  PrNDa(x, a, 5);
+  PrNDa(x, a, n);
   pr("Danh sach can ho sap xep theo id: \n");
   Sorting(x, n);
-  PrNDa(x, a, 5);
+  PrNDa(x, a, n);
 };
-int main() { _5(); }
+int main() {
+  _5();
+  // Data** x = GeNDa(100);
+  // char a[][30] = { "STT","MaCH","Ten chu ho","So thanh vien","So dien" };
+  // PrNDa(x, a, 100);
+}
