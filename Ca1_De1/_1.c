@@ -10,26 +10,32 @@
 // strcat, strncat
 // atoi, itoa
 char* _1(char* a, char* b) {
-  char c[strlen(a) + 1]; c[0] = '\0';
-  while (1) {
-    char* x = strstr(a, b);
-    if (!x) break;
-    strncat(c, a, x - a);
+  char* z = strdup(a);
+  char* t = strstr(z, b);
+  int i;
+  while (t) {
+    for (i = 0; i < strlen(b);i++) t[i] = '-';
+    t = strstr(z, b);
   }
-  return memcpy(malloc(strlen(c) + 1), c, strlen(c) + 1);
+  int l = strlen(z) + 1;
+  return memcpy(malloc(l), z, l);
 }
-
+char* _2(char* a, char b) {
+  int l = strlen(a) + 1, i, j; char c[l];
+  for (i = j = 0; i <= strlen(a);i++) if (a[i] != b) c[j++] = a[i];
+  return memcpy(malloc(l), c, l);
+}
+char* _3() {
+  char a[1000], b[1000]; int i;
+  do {
+    if (i++) printf("Xau a phai dai hon xau b.\n\n");
+    printf("Nhap xau thu nhat: "); fflush(stdin); gets(a);
+    printf("Nhap xau thu hai: "); fflush(stdin); gets(b);
+  } while (strlen(b) > strlen(a));
+  strcpy(a, _1(a, b));
+  printf("Ket qua cau 1: %s\n", a);
+  printf("Ket qua cau 2: %s\n", _2(a, '-'));
+}
 int main() {
-  char a[] = "adbfadf124fadd";
-  char b[] = "fad";
-  char z[strlen(b) + 1];
-  z[strlen(b)] = '\0';
-  strset(z, '-');
-  char x[strlen(a) + 1], * d;
-  int l;
-  for (l = 0, *d = strstr(a, b);!d;l += d - a + strlen(d)) {
-
-  }
-
-  printf(x);
+  _3();
 }
