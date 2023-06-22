@@ -7,7 +7,7 @@
 #define _p printf
 #define _m malloc 
 int check(char* s) {
-  if (strlen(s) > 6 || toupper(s[0]) != 'P') return 1;
+  if (strlen(s) < 6 || toupper(s[0]) != 'P') return 1;
   int i, a, b;
   for (i = a = b = 0; i < strlen(s);i++) {
     char x = s[i];
