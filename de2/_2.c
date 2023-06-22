@@ -114,26 +114,37 @@ void Sorting(void** _a, int _l, int (*_f)(void*, void*)) {
 int C_1(void* a, void* b) { return ((Data*)a)->n < ((Data*)b)->n; }
 float C_2(Data** A, int l) { // Tinh Tong luong tien  
   float x = 0;
-  int i; for (i = 0; i < l; i++) x += (A[i]->p);
+  int i; for (i = 0; i < l; i++) x += (A[i]->p) * A[i]->n;
   return x;
 }
 int D_1(Data* a, float x, float y, char* s) {
   float p = a->p;
   return x <= p && p <= y && !strcmp(a->s, s);
 }
-Data** Filter(Data** A, int l, int x, int y, char* s) {
+Data** Filter(Data** A, int l, float x, float y, char* s) {
   Data** _d = CRAD(l); int j = 0, i;
   for (i = 0; i < l;i++) if (D_1(A[i], x, y, s)) _d[j++] = A[i];
   _d[j++] = (Data*)-1;
   return realloc(_d, j * sizeof(Data*));
 }
+void _5() {
+  printf("Nhap n: "); int n; scanf("%d", &n);
+  Data** x = NhNDa(n);
+  PND(x, n);
+  Sorting(x, n, C_1);
+  PND(x, n);
+  printf("\nTong tien la: %.2f\n", C_2(x, n));
+  float g1, g2;
+  do {
+    printf("Nhap G1,G2 (g1 < g2): ");ff;scanf("%f%f", &g1, &g2);
+  } while (g1 > g2);
+  int size; do {
+    printf("Nhap size: "); ff; scanf("%d", &size);
+  } while (!strlen(GetS(size)));
+  Data** b = Filter(x, n, g1, g2, GetS(size));
+  PND(b, n);
+}
 int main() {
   srand(time(NULL));
-  int n = 20, i;
-  Data** A = CRAD(n);
-  for (i = 0; i < n;i++) A[i] = RDa(i);
-  Sorting((void**)A, n, C_1);
-  Data** B = Filter(A, n, 0, 10000, "M");
-  PND(A, n);
-  free(A); free(B);
+  _5();
 };

@@ -23,7 +23,7 @@ int ChId(char* id) {
 }
 int ChDa(char* id, char* n, int tv, int d) { return !_l(n) || _l(n) > 30 || ChId(id) || tv <= 0 || d < 0; }
 Data* CrDa(char* id, char* n, int tv, int d) {
-  if (ChDa(id, n, tv, d)) return (Data*)-1;
+  if (ChDa(id, n, tv, d)) return (Data*)-2;
   Data* dat = _m(_s(Data));
   strcpy(dat->id, id); strcpy(dat->n, n);
   dat->tv = tv; dat->di = d;
@@ -48,7 +48,7 @@ Data* NhDa() {
   char id[4], n[30], tv[10], di[10];
   int _id = 0, _ch = 0;
 
-  pr("Nhap id(4 chu so): ");
+  pr("Nhap ma CH(4 chu so): ");
   do {
     if (_id++) pr("ID ko hop le, nhap lai id: ");
     gs(id);
@@ -58,15 +58,16 @@ Data* NhDa() {
     pr("Nhap ten: "); gs(n);
     pr("Nhap so thanh vien: "); gs(tv);
     pr("Nhap so dien: "); gs(di);
-  } while (ChDa("0000", n, atoi(tv), atoi(di)));
+  } while (ChDa("1234", n, atoi(tv), atoi(di)));
   return CrDa(id, n, atoi(tv), atoi(di));
 }
 Data** NhNDa(int n) {
   Data** dat = _m(_s(Data*) * (n + 1));
   int i; for (i = 0; i <= n;i++) {
     if (i < n)pr("\n\nNhap can ho thu %d:\n", i + 1);
-    dat[i] = i < n ? NhDa() : (Data*)-1;
+    dat[i] = NhDa();
   }
+  dat[n] = (Data*)-1;
   return dat;
 }
 char* GeLi(char* s, int* x, int l) {
@@ -80,7 +81,7 @@ char* GeLi(char* s, int* x, int l) {
   s[j++] = '+'; s[j++] = '\0';
 }
 void PrDa(Data* x, int* s, int i) { pr("| %*d | %*s | %*s | %*d | %*d |", s[0], i, s[1], x->id, s[2], x->n, s[3], x->tv, s[4], x->di); };
-void PrNDa(Data** x, char** s, int l) {
+void PrNDa(Data** x, char s[][100], int l) {
   int i, j, sp[] = { 5,10,15,15,10 };
   char li[1000]; GeLi(li, sp, 5);
   pr("\n%s\n", li);
@@ -101,8 +102,7 @@ void Sorting(Data** x, int l) {
 void _5() {
   pr("Nhap n: "); int n; sc("%d", &n);
   Data** x = NhNDa(n);
-  char** a = _m(5 * _s(char*));
-  a[0] = "STT", a[1] = "MaCH", a[2] = "Ten chu ho", a[3] = "So thanh vien", a[4] = "So dien";
+  char a[][100] = { "STT","MaCH","Ten chu ho","So thanh vien","So dien" };
   pr("Danh sach can ho vua nhap: \n");
   PrNDa(x, a, 5);
   pr("Danh sach can ho sap xep theo id: \n");
